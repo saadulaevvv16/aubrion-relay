@@ -25,8 +25,9 @@ function car(id) {
 }
 
 const ALLOWED = new Set([
-  'ac_on','ac_off','heat_on','heat_off','temp_up','temp_down',
-  'win_open','win_close','win_half','loc','status'
+  'ac_on','ac_off','heat_on','heat_off','fan_on','fan_off','temp_up','temp_down',
+  'win_open','win_close','win_half','win_fl','win_fr','win_rl','win_rr',
+  'lock','unlock','trunk','mirrors','ready','loc','status'
 ]);
 
 function send(res, code, obj) {
@@ -99,7 +100,7 @@ const server = http.createServer(async (req, res) => {
 
   // --- веб-панель ---
   if (p === '/' || p === '/index.html') {
-    fs.readFile(path.join(__dirname, 'public', 'index.html'), (e, data) => {
+    fs.readFile(path.join(__dirname, 'index.html'), (e, data) => {
       if (e) { res.writeHead(500); res.end('no panel'); return; }
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(data);
